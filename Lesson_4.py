@@ -36,20 +36,23 @@
 # Пример исходного списка: [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11].
 # Результат: [23, 1, 3, 10, 4, 11]
 
-gen_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
-for elem in gen_list:
-    print(f"Элемент {elem} повторяетя {gen_list.count(elem)} раз")
-
-result_list = [el for el in gen_list if gen_list.count(el) == 1]
-print(result_list)
+# gen_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+# for elem in gen_list:
+#     print(f"Элемент {elem} повторяетя {gen_list.count(elem)} раз")
+#
+# result_list = [el for el in gen_list if gen_list.count(el) == 1]
+# print(result_list)
 
 
 # 5. Реализовать формирование списка, используя функцию range() и возможности генератора. В список должны войти четные
 # числа от 100 до 1000 (включая границы). Необходимо получить результат вычисления произведения всех элементов списка.
 # Подсказка: использовать функцию reduce().
 
-
-
+from functools import reduce
+work_list = [el for el in range(100, 1001) if el % 2 == 0]
+def my_func(var1, var2):
+    return var1 * var2
+print(reduce(my_func, work_list))
 
 
 # 6. Реализовать два небольших скрипта:
