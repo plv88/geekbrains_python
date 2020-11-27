@@ -48,11 +48,11 @@
 # числа от 100 до 1000 (включая границы). Необходимо получить результат вычисления произведения всех элементов списка.
 # Подсказка: использовать функцию reduce().
 
-from functools import reduce
-work_list = [el for el in range(100, 1001) if el % 2 == 0]
-def my_func(var1, var2):
-    return var1 * var2
-print(reduce(my_func, work_list))
+# from functools import reduce
+# work_list = [el for el in range(100, 1001) if el % 2 == 0]
+# def my_func(var1, var2):
+#     return var1 * var2
+# print(reduce(my_func, work_list))
 
 
 # 6. Реализовать два небольших скрипта:
@@ -63,8 +63,23 @@ print(reduce(my_func, work_list))
 # Например, в первом задании выводим целые числа, начиная с 3, а при достижении числа 10 завершаем цикл. Во втором также
 # необходимо предусмотреть условие, при котором повторение элементов списка будет прекращено.
 
+from itertools import count
+from itertools import cycle
 
+for el in count(3):
+    if el > 10:
+        break
+    else:
+        print(el)
 
+work_list = ["значение_1", "Значение_2", "значение_3", "Значение_4", "значение_5"]
+c = 0
+#повторяем 5 раз
+for el in cycle(work_list):
+    print(el)
+    c += 1
+    if c >= 5:
+        break
 
 
 # 7. Реализовать генератор с помощью функции с ключевым словом yield, создающим очередное значение. При вызове функции
