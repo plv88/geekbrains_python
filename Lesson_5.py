@@ -1,26 +1,22 @@
-# 4. Создать (не программно) текстовый файл со следующим содержимым:
-# One — 1
-# Two — 2
-# Three — 3
-# Four — 4
-# Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные. При этом английские
-# числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
+# 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами. Программа
+# должна подсчитывать сумму чисел в файле и выводить ее на экран.
+import random as rdn
 
-file_number = open("ex4_dict.txt", "r", encoding="utf-8")
-file_number_russian = open("ex4_dict_rus.txt", "w", encoding="utf-8")
-dict_number_russian = {1: "Один", 3: "Три", 4: "Четыре", 5: "Пять", 2: "Два"}
-for line in file_number:
-    line = line.replace("\n", "")
-    string = line.split()
-    russian_number = dict_number_russian[int(string[2])]
-    # можено было записать в string[0] новое значение и соединить join, но чет так показалось быстрее
-    string_new = russian_number + " " + string[1] + " " + string[2] + "\n"
-    #string_new = string[0] + " " + string[1] + " " + russian_number + "\n"
-    file_number_russian.write(string_new)
 
-file_number.close()
-file_number_russian.close()
+ex5_data = open("ex5_number.txt", "w", encoding="utf-8")
+number_count = int(input("Введите сколько сгенерировать чисел?"))
+string_list = []
+for i in range(number_count):
+    string_list.append(str(rdn.randint(1, 100)))
+my_string_list = ' '.join(string_list)
+ex5_data.write(my_string_list)
+ex5_data.close()
 
-#перечитал задание, возможно нужно было получить One — один, Two — два и тд, если так, то все еще проще, чуть по-другому
-#конкатенацию сделать и все. В цикле закоментировал, какой вариант нужен, такой и будем юзать)
-
+sum_number = open("ex5_number.txt", "r", encoding="utf-8")
+for list in sum_number:
+    list_number_for_sum = list.split(" ")
+    result_sum_list = [int(el) for el in list_number_for_sum]
+    sum = sum(result_sum_list)
+print(list_number_for_sum)
+print(sum)
+ex5_data.close()
