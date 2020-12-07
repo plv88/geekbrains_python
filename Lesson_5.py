@@ -1,27 +1,26 @@
-# 3. Создать текстовый файл (не программно), построчно записать фамилии сотрудников и величину их окладов. Определить,
-# кто из сотрудников имеет оклад менее 20 тыс., вывести фамилии этих сотрудников. Выполнить подсчет средней величины
-# дохода сотрудников.
-#Записал на английском, в задании не было русские\английский поэтому чтобы не возиться с кодировкой, сделал английские.
-my_employ = open("employees.txt", "r")
-#Запишем все в словарик, так проще будет работать.
-individual_dict = {}
-for line in my_employ:
-    line = line.replace("\n", "")
-    array_employ = line.split(" ")
-    individual_dict[array_employ[0]] = array_employ[1]
-sum = 0
-n = 0
-for keys, values in individual_dict.items():
-    if int(values) < 20000:
-        sum += int(values)
-        n += 1
-        print(keys)
-print(f"Средняя тех кто зарабатывает меньше 20к - {int(sum/n)}")
-sum = 0
-n = 0
-for keys, values in individual_dict.items():
-    sum += int(values)
-    n += 1
-print(f"Средняя всех - {int(sum/n)}")
+# 4. Создать (не программно) текстовый файл со следующим содержимым:
+# One — 1
+# Two — 2
+# Three — 3
+# Four — 4
+# Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные. При этом английские
+# числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
 
-my_employ.close()
+file_number = open("ex4_dict.txt", "r", encoding="utf-8")
+file_number_russian = open("ex4_dict_rus.txt", "w", encoding="utf-8")
+dict_number_russian = {1: "Один", 3: "Три", 4: "Четыре", 5: "Пять", 2: "Два"}
+for line in file_number:
+    line = line.replace("\n", "")
+    string = line.split()
+    russian_number = dict_number_russian[int(string[2])]
+    # можено было записать в string[0] новое значение и соединить join, но чет так показалось быстрее
+    string_new = russian_number + " " + string[1] + " " + string[2] + "\n"
+    #string_new = string[0] + " " + string[1] + " " + russian_number + "\n"
+    file_number_russian.write(string_new)
+
+file_number.close()
+file_number_russian.close()
+
+#перечитал задание, возможно нужно было получить One — один, Two — два и тд, если так, то все еще проще, чуть по-другому
+#конкатенацию сделать и все. В цикле закоментировал, какой вариант нужен, такой и будем юзать)
+
