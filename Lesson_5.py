@@ -1,22 +1,26 @@
-# 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами. Программа
-# должна подсчитывать сумму чисел в файле и выводить ее на экран.
-import random as rdn
+# 6. Необходимо создать (не программно) текстовый файл, где каждая строка описывает учебный предмет и наличие
+# лекционных, практических и лабораторных занятий по этому предмету и их количество. Важно, чтобы для каждого
+# предмета не обязательно были все типы занятий. Сформировать словарь, содержащий название предмета и общее количество
+# занятий по нему. Вывести словарь на экран.
+# Примеры строк файла:
+# Информатика: 100(л) 50(пр) 20(лаб).
+# Физика: 30(л) — 10(лаб)
+# Физкультура: — 30(пр) —
+#
+# Пример словаря:
+# {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
 
-
-ex5_data = open("ex5_number.txt", "w", encoding="utf-8")
-number_count = int(input("Введите сколько сгенерировать чисел?"))
-string_list = []
-for i in range(number_count):
-    string_list.append(str(rdn.randint(1, 100)))
-my_string_list = ' '.join(string_list)
-ex5_data.write(my_string_list)
-ex5_data.close()
-
-sum_number = open("ex5_number.txt", "r", encoding="utf-8")
-for list in sum_number:
-    list_number_for_sum = list.split(" ")
-    result_sum_list = [int(el) for el in list_number_for_sum]
-    sum = sum(result_sum_list)
-print(list_number_for_sum)
-print(sum)
-ex5_data.close()
+name_lessons = open("ex_6_lessons.txt", "r", encoding="utf-8")
+lesson_dict = {}
+for line in name_lessons:
+    line = line.replace("\n", "")
+    lesson_list = line.split(":")
+    lesson_list_hour = lesson_list[1].split(" ")
+    sum_lesson = 0
+    for el in lesson_list_hour:
+        if "(" in el:
+            hour_list = el.split("(")
+            sum_lesson += int(hour_list[0])
+    lesson_dict[lesson_list[0]] = sum_lesson
+print(lesson_dict)
+name_lessons.close()
