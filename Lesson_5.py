@@ -38,7 +38,7 @@
 # [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 #
 # Подсказка: использовать менеджеры контекста.
-
+import json
 with open("ex_7_firms.txt", "r", encoding="utf-8") as data:
     dict_firms = {}
     dict_mean_profit = {}
@@ -69,4 +69,6 @@ with open("ex_7_firms.txt", "r", encoding="utf-8") as data:
     company_list.append(dict_firms)
     company_list.append(dict_mean_profit)
     company_list.append(dict_mean_loss)
-print(company_list)
+
+with open("my_file.json", "w") as write_f:
+    json.dump(company_list, write_f)
