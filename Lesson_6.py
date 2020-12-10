@@ -58,24 +58,46 @@
 # работу метода.
 # Например: 20м * 5000м * 25кг * 5см = 12500 т
 
-class Road:
-    def __init__(self, length, width):
-        self._length = length
-        self._width = width
+# class Road:
+#     def __init__(self, length, width):
+#         self._length = length
+#         self._width = width
+#
+#     def mass_of_asphalt(self, mass=None, height=None):
+#         if mass is None and height is None:
+#             print("Не заполнена масса и толщина асфальта")
+#         elif mass is None:
+#             print("Не заполнена масса")
+#         elif height is None:
+#             print("Не толщина асфальта")
+#         else:
+#             print(f"Масса асфальта равна {int(self._length * self._width * mass * height / 1000)} т")
+#
+# r = Road(20, 5000)
+# r.mass_of_asphalt(25, 5)
+#
 
-    def mass_of_asphalt(self, mass=None, height=None):
-        if mass is None and height is None:
-            print("Не заполнена масса и толщина асфальта")
-        elif mass is None:
-            print("Не заполнена масса")
-        elif height is None:
-            print("Не толщина асфальта")
-        else:
-            print(f"Масса асфальта равна {int(self._length * self._width * mass * height / 1000)} т")
+# 3. Реализовать базовый класс Worker (работник), в котором определить атрибуты: name, surname, position (должность),
+# income (доход). Последний атрибут должен быть защищенным и ссылаться на словарь, содержащий элементы: оклад и премия,
+# например, {"wage": wage, "bonus": bonus}. Создать класс Position (должность) на базе класса Worker. В классе Position
+# реализовать методы получения полного имени сотрудника (get_full_name) и дохода с учетом премии (get_total_income).
+# Проверить работу примера на реальных данных (создать экземпляры класса Position, передать данные, проверить значения
+# атрибутов, вызвать методы экземпляров).
 
-r = Road(20, 5000)
-r.mass_of_asphalt(25, 5)
+class Worker:
+    def __init__(self, name, surname, wage, bonus, position=None):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {"wage": wage, "bonus": bonus}
 
+class Position(Worker):
+    def get_full_name(self):
+        print(f"Полное имя сотрудника {self.surname} {self.name}.")
 
+    def get_total_income(self):
+        print(self._income["wage"] + self._income["bonus"])
 
-
+p = Position("Андрей", "Иванов", 150000, 21000)
+p.get_full_name()
+p.get_total_income()
