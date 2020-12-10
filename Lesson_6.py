@@ -84,20 +84,93 @@
 # Проверить работу примера на реальных данных (создать экземпляры класса Position, передать данные, проверить значения
 # атрибутов, вызвать методы экземпляров).
 
-class Worker:
-    def __init__(self, name, surname, wage, bonus, position=None):
+# class Worker:
+#     def __init__(self, name, surname, wage, bonus, position=None):
+#         self.name = name
+#         self.surname = surname
+#         self.position = position
+#         self._income = {"wage": wage, "bonus": bonus}
+#
+# class Position(Worker):
+#     def get_full_name(self):
+#         print(f"Полное имя сотрудника {self.surname} {self.name}.")
+#
+#     def get_total_income(self):
+#         print(self._income["wage"] + self._income["bonus"])
+#
+# p = Position("Андрей", "Иванов", 150000, 21000)
+# p.get_full_name()
+# p.get_total_income()
+
+
+
+# 4. Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты: speed, color, name, is_police
+# (булево). А также методы: go, stop, turn(direction), которые должны сообщать, что машина поехала, остановилась,
+# повернула (куда). Опишите несколько дочерних классов: TownCar, SportCar, WorkCar, PoliceCar. Добавьте в базовый
+# класс метод show_speed, который должен показывать текущую скорость автомобиля. Для классов TownCar и WorkCar
+# переопределите метод show_speed. При значении скорости свыше 60 (TownCar) и 40 (WorkCar) должно выводиться
+# сообщение о превышении скорости.
+# Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
+# Выполните вызов методов и также покажите результат.
+
+class Car:
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
         self.name = name
-        self.surname = surname
-        self.position = position
-        self._income = {"wage": wage, "bonus": bonus}
+        self.is_police = bool(is_police)
 
-class Position(Worker):
-    def get_full_name(self):
-        print(f"Полное имя сотрудника {self.surname} {self.name}.")
+    def go(self):
+        print("Машина поехала")
 
-    def get_total_income(self):
-        print(self._income["wage"] + self._income["bonus"])
+    def stop(self):
+        print("Машина остановилась")
 
-p = Position("Андрей", "Иванов", 150000, 21000)
-p.get_full_name()
-p.get_total_income()
+    def turn(self, direction):
+        print(f"Машина повернула {direction}")
+
+    def show_speed(self):
+        print(f"Текущая скорость автомобиля состовляет {self.speed}")
+
+class TownCar(Car):
+    def show_speed(self):
+        if self.speed > 60:
+            print(f"Cкорость автомобиля превышена на {self.speed - 60} и состовляет {self.speed}")
+        else:
+            print(f"Текущая скорость автомобиля состовляет {self.speed}")
+
+class SportCar(Car):
+    def sport_method(self):
+        print("Для этого метода нет значений")
+
+class WorkCar(Car):
+    def show_speed(self):
+        if self.speed > 40:
+            print(f"Cкорость автомобиля превышена на {self.speed - 40} и состовляет {self.speed}")
+        else:
+            print(f"Текущая скорость автомобиля состовляет {self.speed}")
+
+class PoliceCar(Car):
+    def police(self):
+        if self.is_police == True:
+            print("Это полицейская машина")
+        else:
+            print("Это не полиция")
+
+сar_work = Car(70, "красный", "Мазда", True)
+сar_work.go()
+сar_work.stop()
+сar_work.turn("Направо")
+сar_work.show_speed()
+
+tcar = TownCar(80, "красная", "тайота", False)
+tcar.show_speed()
+
+wcar = WorkCar(90, "красная", "тайота", False)
+wcar.show_speed()
+
+wcar1 = WorkCar(30, "красная", "тайота", False)
+wcar1.show_speed()
+
+pcar = PoliceCar(30, "красная", "тайота", False)
+pcar.police()
