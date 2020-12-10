@@ -113,64 +113,103 @@
 # Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
 # Выполните вызов методов и также покажите результат.
 
-class Car:
-    def __init__(self, speed, color, name, is_police):
-        self.speed = speed
-        self.color = color
-        self.name = name
-        self.is_police = bool(is_police)
+# class Car:
+#     def __init__(self, speed, color, name, is_police):
+#         self.speed = speed
+#         self.color = color
+#         self.name = name
+#         self.is_police = bool(is_police)
+#
+#     def go(self):
+#         print("Машина поехала")
+#
+#     def stop(self):
+#         print("Машина остановилась")
+#
+#     def turn(self, direction):
+#         print(f"Машина повернула {direction}")
+#
+#     def show_speed(self):
+#         print(f"Текущая скорость автомобиля состовляет {self.speed}")
+#
+# class TownCar(Car):
+#     def show_speed(self):
+#         if self.speed > 60:
+#             print(f"Cкорость автомобиля превышена на {self.speed - 60} и состовляет {self.speed}")
+#         else:
+#             print(f"Текущая скорость автомобиля состовляет {self.speed}")
+#
+# class SportCar(Car):
+#     def sport_method(self):
+#         print("Для этого метода нет значений")
+#
+# class WorkCar(Car):
+#     def show_speed(self):
+#         if self.speed > 40:
+#             print(f"Cкорость автомобиля превышена на {self.speed - 40} и состовляет {self.speed}")
+#         else:
+#             print(f"Текущая скорость автомобиля состовляет {self.speed}")
+#
+# class PoliceCar(Car):
+#     def police(self):
+#         if self.is_police == True:
+#             print("Это полицейская машина")
+#         else:
+#             print("Это не полиция")
+#
+# сar_work = Car(70, "красный", "Мазда", True)
+# сar_work.go()
+# сar_work.stop()
+# сar_work.turn("Направо")
+# сar_work.show_speed()
+#
+# tcar = TownCar(80, "красная", "тайота", False)
+# tcar.show_speed()
+#
+# wcar = WorkCar(90, "красная", "тайота", False)
+# wcar.show_speed()
+#
+# wcar1 = WorkCar(30, "красная", "тайота", False)
+# wcar1.show_speed()
+#
+# pcar = PoliceCar(30, "красная", "тайота", False)
+# pcar.police()
 
-    def go(self):
-        print("Машина поехала")
 
-    def stop(self):
-        print("Машина остановилась")
+# 5. Реализовать класс Stationery (канцелярская принадлежность). Определить в нем атрибут title (название) и метод
+# draw (отрисовка). Метод выводит сообщение “Запуск отрисовки.” Создать три дочерних класса Pen (ручка), Pencil
+# (карандаш), Handle (маркер). В каждом из классов реализовать переопределение метода draw. Для каждого из классов
+# методы должен выводить уникальное сообщение. Создать экземпляры классов и проверить, что выведет описанный метод для
+# каждого экземпляра.
 
-    def turn(self, direction):
-        print(f"Машина повернула {direction}")
+class Stationery:
+    def __init__(self, title):
+        self.title = title
 
-    def show_speed(self):
-        print(f"Текущая скорость автомобиля состовляет {self.speed}")
+    def draw(self):
+        print("Запуск отрисовки")
 
-class TownCar(Car):
-    def show_speed(self):
-        if self.speed > 60:
-            print(f"Cкорость автомобиля превышена на {self.speed - 60} и состовляет {self.speed}")
-        else:
-            print(f"Текущая скорость автомобиля состовляет {self.speed}")
+class Pen(Stationery):
+    def draw(self):
+        print("Рисуем карандашом")
 
-class SportCar(Car):
-    def sport_method(self):
-        print("Для этого метода нет значений")
+class Pencil(Stationery):
+    def draw(self):
+        print("Рисуем ручкой")
 
-class WorkCar(Car):
-    def show_speed(self):
-        if self.speed > 40:
-            print(f"Cкорость автомобиля превышена на {self.speed - 40} и состовляет {self.speed}")
-        else:
-            print(f"Текущая скорость автомобиля состовляет {self.speed}")
+class Handle(Stationery):
+    def draw(self):
+        print("Рисуем маркером")
 
-class PoliceCar(Car):
-    def police(self):
-        if self.is_police == True:
-            print("Это полицейская машина")
-        else:
-            print("Это не полиция")
+st_test = Stationery("Рисуем вместе")
+st_test.draw()
 
-сar_work = Car(70, "красный", "Мазда", True)
-сar_work.go()
-сar_work.stop()
-сar_work.turn("Направо")
-сar_work.show_speed()
+st_test2 = Pen("Рисуем вместе, карандаш")
+st_test2.draw()
 
-tcar = TownCar(80, "красная", "тайота", False)
-tcar.show_speed()
+st_test2 = Pencil("Рисуем вместе, ручка")
+st_test2.draw()
 
-wcar = WorkCar(90, "красная", "тайота", False)
-wcar.show_speed()
+st_test2 = Handle("Рисуем вместе, маркер")
+st_test2.draw()
 
-wcar1 = WorkCar(30, "красная", "тайота", False)
-wcar1.show_speed()
-
-pcar = PoliceCar(30, "красная", "тайота", False)
-pcar.police()
